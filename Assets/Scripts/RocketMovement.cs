@@ -9,6 +9,7 @@ public class RocketMovement : MonoBehaviour
     public GameObject destinationPoint;
     public float speed = 3f;
     public float turnSpeed = 3f;
+    public bool constantMovement = false;
 
     PlayerInput controls;
 
@@ -22,7 +23,7 @@ public class RocketMovement : MonoBehaviour
     {
         controls = new PlayerInput();
         controls.Main.Click.performed += ctx => MoveToClick();
-        controls.Main.PointerPosition.performed += ctx => pointerPosition = ctx.ReadValue<Vector2>();
+        controls.Main.PointerPosition.performed += ctx => UpdateCursorPos(ctx.ReadValue<Vector2>());
 
 
         controller = GetComponent<CharacterController>();
@@ -34,6 +35,11 @@ public class RocketMovement : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public void ToggleMovement()
+    {
+        constantMovement = !constantMovement;
     }
 
     // Update is called once per frame
@@ -63,24 +69,36 @@ public class RocketMovement : MonoBehaviour
 
     }
 
+
+    void UpdateCursorPos(Vector2 cursorPos)
+    {
+        pointerPosition = cursorPos;
+
+        if (constantMovement) { SetDestination(); }
+    }
+
     void MoveToClick()
     {
 
-        
+        if (!constantMovement) { SetDestination(); }        
 
+        //rocket.transform.LookAt(destinationPoint.transform);
+        //rocket.transform.position = destination;
+    }
+
+
+    void SetDestination()
+    {
         Vector3 destination;
 
-        destination = new Vector3 (pointerPosition.x, pointerPosition.y, 0);
+        destination = new Vector3(pointerPosition.x, pointerPosition.y, 0);
         destination = Camera.main.ScreenToWorldPoint(destination);
         destination.z = 0;
 
         destinationPoint.transform.position = destination;
-
-        //rocket.transform.LookAt(destinationPoint.transform);
-
-        //rocket.transform.position = destination;
-
     }
+
+
 
     private void OnEnable()
     {
