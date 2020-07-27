@@ -28,7 +28,7 @@ public class RocketMovement : MonoBehaviour
     float moveThreshold = 0.1f;
     const float landingRadius = 1f;
 
-    const float doubleTapThreshhold = 1f;
+    const float doubleTapThreshhold = 0.3f;
 
 
     bool isDoubleTap = false;
@@ -41,6 +41,10 @@ public class RocketMovement : MonoBehaviour
     bool isWin = false;
 
 
+    [SerializeField] GameObject moveButton;
+    Image moveImage;
+
+
 
     private void Awake()
     {
@@ -48,6 +52,11 @@ public class RocketMovement : MonoBehaviour
         controls = new PlayerInput();
         controls.Main.Click.performed += ctx => MoveToClick();
         controls.Main.PointerPosition.performed += ctx => UpdateCursorPos(ctx.ReadValue<Vector2>());
+
+        moveImage = moveButton.GetComponent<Image>();
+
+        constantMovement = PlayerPrefs.GetInt("ConstMove", 1) == 1 ? true : false;
+        SetColour(constantMovement, moveImage);
 
 
         controller = GetComponent<CharacterController>();
@@ -91,6 +100,8 @@ public class RocketMovement : MonoBehaviour
     }
 
 
+
+
     public void WinRound(Transform target)
     {
         isWin = true;
@@ -113,6 +124,25 @@ public class RocketMovement : MonoBehaviour
             animation.Play("RocketTurn");
         }
       
+    }
+
+
+    void SetColour(bool condition, Image pic)
+    {
+        if (condition) { pic.color = Color.green; }
+        else { pic.color = Color.white; }
+    }
+
+
+
+
+    public void ToggleMovement()
+    {
+        constantMovement = !constantMovement;
+
+        PlayerPrefs.SetInt("ConstMove", constantMovement ? 1 : 0);
+
+        SetColour(constantMovement, moveImage);
     }
 
 

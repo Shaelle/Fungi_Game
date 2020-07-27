@@ -25,13 +25,18 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Transform homePlanet;
 
+    [SerializeField] Sprite[] planets;
+
     [SerializeField] string nextScene;
+
+    [SerializeField] SwitchBackground background;
 
     bool _restarting = false;
     bool _isWin = false;
 
     string sceneName;
 
+    static int sceneNom = 1;
 
 
     private void Start()
@@ -44,10 +49,20 @@ public class LevelManager : MonoBehaviour
         coins = totalCoins;
         coinsText.text = coins.ToString();
 
-        float x; float y;
+        SpriteRenderer homeImage = homePlanet.GetComponent<SpriteRenderer>();
+        homeImage.sprite = planets[PlanetIndex(sceneNom-1)];
+
+        SpriteRenderer targetImage = target.GetComponent<SpriteRenderer>();
+        targetImage.sprite = planets[PlanetIndex(sceneNom)];
+
+      
+        background.ChangeBackground(sceneNom-1);
+ 
+     
+        float x; float y; // spawn coins on random positions
         float z = 0;
 
-        for (int i = 0; i < coinsOnLevel; i++) // spawn coins on random positions
+        for (int i = 0; i < coinsOnLevel; i++) 
         {
             bool coinSpawned = false;
 
@@ -78,6 +93,24 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+    }
+
+
+    private int PlanetIndex(int nom)
+    {
+        int temp;
+
+        if ((nom < planets.Length) && (nom > 0))
+        {
+            temp = nom--;
+        }
+        else
+        {
+            temp = 0;
+        }
+
+        return temp;
+       
     }
 
 
@@ -122,7 +155,18 @@ public class LevelManager : MonoBehaviour
             rocket.WinRound(target);
 
             StartCoroutine(Winning());
+         
+            if (sceneNom < planets.Length) // changing levels
+            {
+                sceneNom++;
+            }
+            else
+            {
+                sceneNom = 1;
+            }
+
         }
+
     }
 
 
