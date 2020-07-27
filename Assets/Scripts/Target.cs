@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Target : MonoBehaviour
 {
-
-    [SerializeField] LevelManager sceneManager;
-
+    [SerializeField] LevelManager levelManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-         sceneManager.HitHappened();
+        levelManager.TargetReached();
     }
+
 
 }

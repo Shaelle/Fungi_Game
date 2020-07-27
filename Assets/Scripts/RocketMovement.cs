@@ -6,23 +6,17 @@ using UnityEngine.UI;
 public class RocketMovement : MonoBehaviour
 {
 
-    public GameObject rocket;
-    public GameObject destinationPoint;
-    public float speed = 3f;
-    public float turnSpeed = 3f;
-    public bool constantMovement = true;
-    public bool holdPosition = false;
+    [SerializeField] GameObject rocket;
+    GameObject innerRocket;
+    GameObject exhaust;
 
 
-    public GameObject moveButton;
-    Image moveImage;
-
-    public GameObject holdButton;
-    Image holdImage;
+    [SerializeField] GameObject destinationPoint;
+    [SerializeField] float speed = 3f;
+    [SerializeField] float turnSpeed = 3f;
 
 
-
-
+    bool constantMovement = true;
     bool waypointReached = false;
 
     PlayerInput controls;
@@ -31,18 +25,25 @@ public class RocketMovement : MonoBehaviour
 
     private Vector2 pointerPosition;
 
-    const float moveThreshold = 0.1f;
+    float moveThreshold = 0.1f;
+    const float landingRadius = 1f;
+
+    const float doubleTapThreshhold = 1f;
+
+
+    bool isDoubleTap = false;
+
+    bool isBooosted = false;
+
+    [SerializeField] float boostTime = 1f;
+    [SerializeField] float boostMagnitude = 2f;
+
+    bool isWin = false;
+
+
 
     private void Awake()
     {
-        holdImage = holdButton.GetComponent<Image>();
-        moveImage = moveButton.GetComponent<Image>();
-
-        constantMovement = PlayerPrefs.GetInt("ConstMove", 1) == 1 ? true : false;
-        SetColour(constantMovement, moveImage);
-
-        holdPosition = PlayerPrefs.GetInt("HoldPos", 0) == 1 ? true : false;
-        SetColour(holdPosition, holdImage);
 
         controls = new PlayerInput();
         controls.Main.Click.performed += ctx => MoveToClick();
@@ -52,6 +53,9 @@ public class RocketMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         if (controller == null) { Debug.Log("Character controller not found!"); }
 
+        innerRocket = rocket.transform.GetChild(0).gameObject;
+        exhaust = rocket.transform.GetChild(1).gameObject;
+       
     }
 
 
@@ -59,73 +63,70 @@ public class RocketMovement : MonoBehaviour
     void Update()
     {
 
+
+        float speedBust = 1;
+
+        if (isBooosted) { speedBust = boostMagnitude; }
+
         Vector3 direction = new Vector3(destinationPoint.transform.position.x - rocket.transform.position.x, destinationPoint.transform.position.y - rocket.transform.position.y, 0f);
 
-        if (!constantMovement || holdPosition) { waypointReached = false; }
+        if (!constantMovement) { waypointReached = false; }
 
         RotateShip();
 
         if ((direction.magnitude > moveThreshold) && !constantMovement)
-        {
-
-           // RotateShip();
-
-            float speedBust = 1;// direction.magnitude;
+        {          
             direction.Normalize();
 
-            controller.Move(direction * (speed + speedBust) * Time.deltaTime);
-          
+            controller.Move(direction * (speed + speedBust) * Time.deltaTime);          
         }
 
         if (constantMovement)
         {
             Vector3 moveDirection = transform.TransformDirection(Vector3.right) * speed;
-            controller.Move(moveDirection * Time.deltaTime);
+
+            controller.Move(moveDirection * speedBust * Time.deltaTime);
         }
 
     }
 
 
-    void SetColour(bool condition, Image pic)
+    public void WinRound(Transform target)
     {
-        if (condition) { pic.color = Color.green; }
-        else { pic.color = Color.white; }
+        isWin = true;
+
+        speed = speed / 2;
+
+        moveThreshold = landingRadius;
+
+        destinationPoint.transform.position = target.position;
+
+        constantMovement = false;
+
+        exhaust.SetActive(false);
+
+        Animator animation;
+        animation = innerRocket.GetComponent<Animator>();
+
+        if (animation != null)
+        {
+            animation.Play("RocketTurn");
+        }
+      
     }
 
-
-    public void ToggleMovement()
-    {
-        constantMovement = !constantMovement;
-
-        PlayerPrefs.SetInt("ConstMove", constantMovement ? 1 : 0);
-
-        SetColour(constantMovement, moveImage);
-
-    }
-
-
-
-    public void ToggleHold()
-    {
-        holdPosition = !holdPosition;
-
-        PlayerPrefs.SetInt("HoldPos", holdPosition ? 1 : 0);
-
-        SetColour(holdPosition, holdImage);
-    }
 
 
     void UpdateCursorPos(Vector2 cursorPos)
     {
         pointerPosition = cursorPos;
-
-
-        //if (constantMovement) { SetDestination(); }
     }
+
+
 
     void MoveToClick()
     {
-        
+
         SetDestination();
 
         if (constantMovement)
@@ -133,36 +134,65 @@ public class RocketMovement : MonoBehaviour
             waypointReached = false;
         }
 
+        if (!isDoubleTap) { StartCoroutine(DoubleTab()); }
+        else { StartCoroutine(BoostSpeed()); }
+
     }
 
 
     void SetDestination()
     {
-        Vector3 destination;
+        if (!isWin)
+        {
+            Vector3 destination;
 
-        destination = new Vector3(pointerPosition.x, pointerPosition.y, 0);
-        destination = Camera.main.ScreenToWorldPoint(destination);
-        destination.z = 0;
+            destination = new Vector3(pointerPosition.x, pointerPosition.y, 0);
+            destination = Camera.main.ScreenToWorldPoint(destination);
+            destination.z = 0;
 
-        destinationPoint.transform.position = destination;
+            destinationPoint.transform.position = destination;
+        }
     }
+
+
 
     void RotateShip()
     {
+
+        float speedBust = 1;
+
+        if (isBooosted) { speedBust = boostMagnitude; }
+
         if (!waypointReached)
         {
             Vector3 vectorToTarget = destinationPoint.transform.position - rocket.transform.position;
             waypointReached = vectorToTarget.magnitude < 0.5f;
 
-
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            rocket.transform.rotation = Quaternion.Slerp(rocket.transform.rotation, q, Time.deltaTime * speed);
+            rocket.transform.rotation = Quaternion.Slerp(rocket.transform.rotation, q, Time.deltaTime * speed * speedBust);
         }
-
-
     }
 
+
+
+    IEnumerator DoubleTab()
+    {
+        isDoubleTap = true;
+
+        yield return new WaitForSeconds(doubleTapThreshhold);
+
+        isDoubleTap = false;
+    }
+
+    IEnumerator BoostSpeed()
+    {
+        isBooosted = true;
+
+        yield return new WaitForSeconds(boostTime);
+
+        isBooosted = false;
+    }
 
 
     private void OnEnable()

@@ -27,7 +27,7 @@
                     "name": "",
                     "id": "ff6ad5db-57af-4374-b2f1-5c22b0255bd5",
                     "path": "<Pointer>/press",
-                    "interactions": "",
+                    "interactions": "Tap(duration=0.4)",
                     "processors": "",
                     "groups": "",
                     "action": "Click",
