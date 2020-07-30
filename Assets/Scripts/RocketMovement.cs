@@ -15,8 +15,12 @@ public class RocketMovement : MonoBehaviour
     [SerializeField] float speed = 3f;
     [SerializeField] float turnSpeed = 3f;
 
+    [SerializeField] float startPause = 1f;
+    bool isStarting = true;
+
 
     bool constantMovement = true;
+    bool inFlight = true;
     bool waypointReached = false;
 
     PlayerInput controls;
@@ -64,7 +68,17 @@ public class RocketMovement : MonoBehaviour
 
         innerRocket = rocket.transform.GetChild(0).gameObject;
         exhaust = rocket.transform.GetChild(1).gameObject;
+
+        StartCoroutine(StartPause());
        
+    }
+
+
+    IEnumerator StartPause()
+    {
+        yield return new WaitForSeconds(startPause);
+
+        isStarting = false;
     }
 
 
@@ -79,27 +93,34 @@ public class RocketMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(destinationPoint.transform.position.x - rocket.transform.position.x, destinationPoint.transform.position.y - rocket.transform.position.y, 0f);
 
-        if (!constantMovement) { waypointReached = false; }
-
-        RotateShip();
-
-        if ((direction.magnitude > moveThreshold) && !constantMovement)
-        {          
-            direction.Normalize();
-
-            controller.Move(direction * (speed + speedBust) * Time.deltaTime);          
-        }
-
-        if (constantMovement)
+        if (!isStarting)
         {
-            Vector3 moveDirection = transform.TransformDirection(Vector3.right) * speed;
+            if (!constantMovement) { waypointReached = false; }
+            //waypointReached = false;
 
-            controller.Move(moveDirection * speedBust * Time.deltaTime);
+            RotateShip();
+
+            if ((direction.magnitude > moveThreshold) && !inFlight)
+            {
+                direction.Normalize();
+
+                controller.Move(direction * (speed + speedBust) * Time.deltaTime);
+            }
+
+            if (inFlight)
+            {
+                Vector3 moveDirection = transform.TransformDirection(Vector3.right) * speed;
+
+                controller.Move(moveDirection * speedBust * Time.deltaTime);
+            }
         }
 
     }
 
-
+    public void CutEngine()
+    {
+        exhaust.SetActive(false);
+    }
 
 
     public void WinRound(Transform target)
@@ -112,7 +133,8 @@ public class RocketMovement : MonoBehaviour
 
         destinationPoint.transform.position = target.position;
 
-        constantMovement = false;
+        //constantMovement = false;
+        inFlight = false;
 
         exhaust.SetActive(false);
 
@@ -159,9 +181,9 @@ public class RocketMovement : MonoBehaviour
 
         SetDestination();
 
-        if (constantMovement)
-        {
-            waypointReached = false;
+        if (inFlight)
+         {
+        waypointReached = false;
         }
 
         if (!isDoubleTap) { StartCoroutine(DoubleTab()); }

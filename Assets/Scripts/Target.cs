@@ -8,7 +8,12 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        levelManager.TargetReached();
+        levelManager.TargetReached(transform);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        levelManager.FinishTakeOff();
     }
 
 

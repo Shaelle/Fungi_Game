@@ -1,0 +1,671 @@
+fileFormatVersion: 2
+guid: 912104d16f6ced94992c5dcdd4db7f4c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8430891147153297486
+    second: Explosion_Big_0
+  - first:
+      213: -3951127805108004755
+    second: Explosion_Big_1
+  - first:
+      213: -1549167375625758071
+    second: Explosion_Big_2
+  - first:
+      213: 8286845657325658457
+    second: Explosion_Big_3
+  - first:
+      213: 2693858380025246489
+    second: Explosion_Big_4
+  - first:
+      213: 1263995903786755767
+    second: Explosion_Big_5
+  - first:
+      213: 8230892801964056382
+    second: Explosion_Big_6
+  - first:
+      213: 3331610468069328847
+    second: Explosion_Big_7
+  - first:
+      213: -6444223196945874028
+    second: Explosion_Big_8
+  - first:
+      213: 6463917665998205540
+    second: Explosion_Big_9
+  - first:
+      213: -5120538571070062076
+    second: Explosion_Big_10
+  - first:
+      213: -8720189711195382742
+    second: Explosion_Big_11
+  - first:
+      213: 7681407692690007446
+    second: Explosion_Big_12
+  - first:
+      213: 8712070342069123464
+    second: Explosion_Big_13
+  - first:
+      213: 3632829015033669925
+    second: Explosion_Big_14
+  - first:
+      213: -2257114177401169931
+    second: Explosion_Big_15
+  - first:
+      213: -4178048928520535524
+    second: Explosion_Big_16
+  - first:
+      213: -1529806121073124184
+    second: Explosion_Big_17
+  - first:
+      213: 620722638562987052
+    second: Explosion_Big_18
+  - first:
+      213: -1352022604011422097
+    second: Explosion_Big_19
+  - first:
+      213: -313958101321319792
+    second: Explosion_Big_20
+  - first:
+      213: -8596924467253481885
+    second: Explosion_Big_0
+  - first:
+      213: 6033367259991382303
+    second: Explosion_Big_1
+  - first:
+      213: 4614078532690349415
+    second: Explosion_Big_2
+  - first:
+      213: 2202905639874082930
+    second: Explosion_Big_3
+  - first:
+      213: 3296541629475917152
+    second: Explosion_Big_4
+  - first:
+      213: -7048759803182096932
+    second: Explosion_Big_5
+  - first:
+      213: 8157806662703409251
+    second: Explosion_Big_6
+  - first:
+      213: -9127152974339653675
+    second: Explosion_Big_7
+  - first:
+      213: -4207166502086539895
+    second: Explosion_Big_8
+  - first:
+      213: -1023063298824049200
+    second: Explosion_Big_9
+  - first:
+      213: 696289091353021836
+    second: Explosion_Big_10
+  - first:
+      213: -2875639551773071992
+    second: Explosion_Big_11
+  - first:
+      213: -7442173533172036973
+    second: Explosion_Big_12
+  - first:
+      213: -4497207806290090366
+    second: Explosion_Big_13
+  - first:
+      213: -2241060240990360627
+    second: Explosion_Big_14
+  - first:
+      213: -1947485393352008419
+    second: Explosion_Big_15
+  - first:
+      213: -5385255858214323662
+    second: Explosion_Big_16
+  - first:
+      213: -6093778873172664250
+    second: Explosion_Big_17
+  - first:
+      213: -8316147155201986303
+    second: Explosion_Big_18
+  - first:
+      213: -6720111651116293875
+    second: Explosion_Big_19
+  - first:
+      213: 1261925323065702818
+    second: Explosion_Big_20
+  - first:
+      213: -810104359127966274
+    second: Explosion_Big_21
+  - first:
+      213: -6083177695142417863
+    second: Explosion_Big_22
+  - first:
+      213: -1538700582493255517
+    second: Explosion_Big_23
+  - first:
+      213: -6923163516101673367
+    second: Explosion_Big_24
+  - first:
+      213: 704666147481223447
+    second: Explosion_Big_25
+  - first:
+      213: 4759020026188073345
+    second: Explosion_Big_26
+  - first:
+      213: 2699836465941412733
+    second: Explosion_Big_27
+  - first:
+      213: 9150497830501178731
+    second: Explosion_Big_28
+  - first:
+      213: 6669476544881917639
+    second: Explosion_Big_29
+  - first:
+      213: 3727548227413183329
+    second: Explosion_Big_30
+  - first:
+      213: 9077102017501118855
+    second: Explosion_Big_31
+  - first:
+      213: 272248801213552555
+    second: Explosion_Big_32
+  - first:
+      213: -7850458993849562121
+    second: Explosion_Big_33
+  - first:
+      213: 2064658926299745576
+    second: Explosion_Big_34
+  - first:
+      213: -6004325827635715363
+    second: Explosion_Big_35
+  - first:
+      213: -2467302370337346598
+    second: Explosion_Big_36
+  - first:
+      213: 5319009884032855940
+    second: Explosion_Big_37
+  - first:
+      213: 9211989843476946735
+    second: Explosion_Big_38
+  - first:
+      213: 6559008535059964958
+    second: Explosion_Big_39
+  - first:
+      213: -8467121280943997253
+    second: Explosion_Big_40
+  - first:
+      213: 9124655766578834794
+    second: Explosion_Big_41
+  - first:
+      213: 2334170052998200929
+    second: Explosion_Big_42
+  - first:
+      213: 2211425538725243212
+    second: Explosion_Big_43
+  - first:
+      213: -5263417733970204074
+    second: Explosion_Big_44
+  - first:
+      213: -8619559856862135425
+    second: Explosion_Big_45
+  - first:
+      213: -5878580570594340987
+    second: Explosion_Big_46
+  - first:
+      213: -5761266106098891258
+    second: Explosion_Big_47
+  - first:
+      213: -3181929141389550113
+    second: Explosion_Big_48
+  - first:
+      213: 8693211412910495653
+    second: Explosion_Big_49
+  - first:
+      213: -6418517082759289180
+    second: Explosion_Big_50
+  - first:
+      213: 6944375813350840708
+    second: Explosion_Big_51
+  - first:
+      213: 460675096308801035
+    second: Explosion_Big_52
+  - first:
+      213: -7827306799995134792
+    second: Explosion_Big_53
+  - first:
+      213: 7674748207044267825
+    second: Explosion_Big_54
+  - first:
+      213: 7338678609578288311
+    second: Explosion_Big_55
+  - first:
+      213: -7150783902070774700
+    second: Explosion_Big_56
+  - first:
+      213: 4474632591932775644
+    second: Explosion_Big_57
+  - first:
+      213: 1084194125423471640
+    second: Explosion_Big_58
+  - first:
+      213: 8439545940621671861
+    second: Explosion_Big_59
+  - first:
+      213: -3020311711839246264
+    second: Explosion_Big_60
+  - first:
+      213: -3897571189892522293
+    second: Explosion_Big_61
+  - first:
+      213: -1438511766223834313
+    second: Explosion_Big_62
+  - first:
+      213: 3635142827902580107
+    second: Explosion_Big_63
+  - first:
+      213: -2191136506387026685
+    second: Explosion_Big_64
+  - first:
+      213: 4284177441668511287
+    second: Explosion_Big_65
+  - first:
+      213: 4728088797715353392
+    second: Explosion_Big_66
+  - first:
+      213: -3669938288689019697
+    second: Explosion_Big_67
+  - first:
+      213: -837721017763281915
+    second: Explosion_Big_68
+  - first:
+      213: -3031843490809021175
+    second: Explosion_Big_69
+  - first:
+      213: 7235840769420278134
+    second: Explosion_Big_70
+  - first:
+      213: -6787247674683450386
+    second: Explosion_Big_71
+  - first:
+      213: 5337971509804001300
+    second: Explosion_Big_72
+  - first:
+      213: -2399645736298731394
+    second: Explosion_Big_73
+  - first:
+      213: -5791018541161543451
+    second: Explosion_Big_74
+  - first:
+      213: 460553871901384580
+    second: Explosion_Big_75
+  - first:
+      213: -1147111943173659983
+    second: Explosion_Big_76
+  - first:
+      213: -5076368531157516691
+    second: Explosion_Big_77
+  - first:
+      213: -6887950000877257633
+    second: Explosion_Big_78
+  - first:
+      213: 7290912093163622019
+    second: Explosion_Big_79
+  - first:
+      213: -6200938915019241909
+    second: Explosion_Big_80
+  - first:
+      213: -1231558619402315814
+    second: Explosion_Big_81
+  - first:
+      213: 7369540097723328443
+    second: Explosion_Big_82
+  - first:
+      213: -480631999467472114
+    second: Explosion_Big_83
+  - first:
+      213: -4902993895592941615
+    second: Explosion_Big_84
+  - first:
+      213: -185586509235989506
+    second: Explosion_Big_85
+  - first:
+      213: 1726418604912998866
+    second: Explosion_Big_86
+  - first:
+      213: -1010610184688301043
+    second: Explosion_Big_87
+  - first:
+      213: -8970219858478848523
+    second: Explosion_Big_88
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Explosion_Big_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36eed78deb691b880800000000000000
+      internalID: -8596924467253481885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_1
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19124b8e83dab350800000000000000
+      internalID: 6033367259991382303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_2
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d83c2aaff780040800000000000000
+      internalID: 4614078532690349415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_3
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 278366a020b429e10800000000000000
+      internalID: 2202905639874082930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_4
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d033c652bafbd20800000000000000
+      internalID: 3296541629475917152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_5
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd57401e46cd2e90800000000000000
+      internalID: -7048759803182096932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_6
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36860c410f9563170800000000000000
+      internalID: 8157806662703409251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_7
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dfb5d14ab6d55180800000000000000
+      internalID: -9127152974339653675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_Big_8
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 0
+        width: 227
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 985853c5b542d95c0800000000000000
+      internalID: -4207166502086539895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

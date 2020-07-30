@@ -31,8 +31,15 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] SwitchBackground background;
 
+
+    [SerializeField] Animator transition;
+
+    [SerializeField] float transitionTime = 1f;
+
     bool _restarting = false;
     bool _isWin = false;
+
+    bool isTakingOff = true;
 
     string sceneName;
 
@@ -91,7 +98,10 @@ public class LevelManager : MonoBehaviour
                     coinSpawned = true;
                 }
             }
+
         }
+
+        StartCoroutine(FinishingTakeOff());
 
     }
 
@@ -111,6 +121,22 @@ public class LevelManager : MonoBehaviour
 
         return temp;
        
+    }
+
+
+    public void FinishTakeOff() // Prevent home planet from triggering "landing" event
+    {
+        isTakingOff = false;
+    }
+
+
+
+    IEnumerator FinishingTakeOff() // Backup option in case starting point can not be landed
+    {
+        yield return new WaitForSeconds(3f);
+
+        isTakingOff = false;
+
     }
 
 
@@ -142,9 +168,9 @@ public class LevelManager : MonoBehaviour
 
 
 
-    public void TargetReached()
+    public void TargetReached(Transform targetPos)
     {
-        if (!_restarting)
+        if (!_restarting && !isTakingOff)
         {
             _isWin = true;
 
@@ -152,7 +178,7 @@ public class LevelManager : MonoBehaviour
 
             totalCoins = coins;
 
-            rocket.WinRound(target);
+            rocket.WinRound(targetPos);
 
             StartCoroutine(Winning());
          
@@ -175,7 +201,14 @@ public class LevelManager : MonoBehaviour
     {
         boomPanel.SetActive(true);
 
-        yield return new WaitForSeconds(1.5f);
+        rocket.CutEngine();
+        rocket.GetComponent<Spaceship>().Explode();
+
+        yield return new WaitForSeconds(1f);
+
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(sceneName);
         
@@ -187,7 +220,11 @@ public class LevelManager : MonoBehaviour
     {
         winPanel.SetActive(true);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
+
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(nextScene); 
     }
