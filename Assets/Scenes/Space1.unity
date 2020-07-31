@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 756223294}
+  destination: 0
 --- !u!50 &42491023
 Rigidbody2D:
   serializedVersion: 4
@@ -468,6 +469,7 @@ MonoBehaviour:
   nextScene: Space1
   background: {fileID: 1462987657}
   transition: {fileID: 2089983944}
+  transitionTime: 1
 --- !u!4 &756223295
 Transform:
   m_ObjectHideFlags: 0
@@ -595,6 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 756223294}
+  destination: 1
 --- !u!50 &815347047
 Rigidbody2D:
   serializedVersion: 4

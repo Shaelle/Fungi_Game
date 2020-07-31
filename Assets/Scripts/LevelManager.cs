@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
     bool _restarting = false;
     bool _isWin = false;
 
+
     bool isTakingOff = true;
 
     string sceneName;
@@ -168,27 +169,33 @@ public class LevelManager : MonoBehaviour
 
 
 
-    public void TargetReached(Transform targetPos)
+    public void TargetReached(Transform targetPos, bool destination)
     {
         if (!_restarting && !isTakingOff)
         {
             _isWin = true;
 
-            AddCoins(victoryCoins);
+            if (destination)
+            {
+                AddCoins(victoryCoins);                
+            }
 
             totalCoins = coins;
 
             rocket.WinRound(targetPos);
 
-            StartCoroutine(Winning());
-         
-            if (sceneNom < planets.Length) // changing levels
+            StartCoroutine(Winning(destination));
+
+            if (destination) // changing levels
             {
-                sceneNom++;
-            }
-            else
-            {
-                sceneNom = 1;
+                if (sceneNom < planets.Length) 
+                {
+                    sceneNom++;
+                }
+                else
+                {
+                    sceneNom = 1;
+                }
             }
 
         }
@@ -216,17 +223,27 @@ public class LevelManager : MonoBehaviour
 
 
 
-    IEnumerator Winning()
+    IEnumerator Winning(bool destination)
     {
-        winPanel.SetActive(true);
+        if (destination)
+        {
+            winPanel.SetActive(true);
 
-        yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(4f);
+        }
 
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(nextScene); 
+        if (destination)
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 
 }
