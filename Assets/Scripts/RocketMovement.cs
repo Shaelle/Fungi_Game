@@ -39,10 +39,19 @@ public class RocketMovement : MonoBehaviour
 
     bool isBooosted = false;
 
+    bool isReturning = false;
+
+    bool isMovingRight = false;
+    bool isMovingUp = false;
+
+
     [SerializeField] float boostTime = 1f;
     [SerializeField] float boostMagnitude = 2f;
 
     bool isWin = false;
+
+
+    Vector2 screenBoundaries;
 
 
     [SerializeField] GameObject moveButton;
@@ -70,7 +79,9 @@ public class RocketMovement : MonoBehaviour
         exhaust = rocket.transform.GetChild(1).gameObject;
 
         StartCoroutine(StartPause());
-       
+
+        screenBoundaries = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+
     }
 
 
@@ -88,6 +99,10 @@ public class RocketMovement : MonoBehaviour
 
 
         float speedBust = 1;
+
+        float prevX = transform.position.x;
+        float prevY = transform.position.y;
+         
 
         if (isBooosted) { speedBust = boostMagnitude; }
 
@@ -113,13 +128,71 @@ public class RocketMovement : MonoBehaviour
 
                 controller.Move(moveDirection * speedBust * Time.deltaTime);
             }
+
+            isMovingRight = prevX < transform.position.x;
+            isMovingUp = prevY < transform.position.y;
+
+            Boundaries();
         }
 
     }
 
+
+    private void LateUpdate()
+    {
+
+        Vector3 shipPos = transform.position;
+        shipPos.x = Mathf.Clamp(shipPos.x, screenBoundaries.x * -1, screenBoundaries.x);
+        shipPos.y = Mathf.Clamp(shipPos.y, screenBoundaries.y * -1, screenBoundaries.y);
+
+        transform.position = shipPos;
+        
+    }
+
+
+
     public void CutEngine()
     {
         exhaust.SetActive(false);
+    }
+
+
+
+    private void Boundaries()
+    {
+
+        const float rotSpeed = 100f;
+
+        void BackTurn(bool key)
+        {
+            if (key) transform.Rotate(0, 0, rotSpeed * Time.deltaTime);
+            else transform.Rotate(0, 0, -rotSpeed * Time.deltaTime);
+        }
+
+        if (!isReturning)
+        {
+            if (transform.position.x > screenBoundaries.x) // Right
+            {
+                BackTurn(isMovingUp);
+            }
+
+            else if (transform.position.x < screenBoundaries.x * -1) // Left
+            {
+                BackTurn(!isMovingUp);
+            }
+
+            else if (transform.position.y > screenBoundaries.y) // Top
+            {
+                BackTurn(!isMovingRight);
+            }
+
+            else if (transform.position.y < screenBoundaries.y * -1) // Bottom
+            {
+                BackTurn(isMovingRight);
+            }
+
+        }
+
     }
 
 

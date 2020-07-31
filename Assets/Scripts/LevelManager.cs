@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
         targetImage.sprite = planets[PlanetIndex(sceneNom)];
 
       
-        background.ChangeBackground(sceneNom-1);
+        //background.ChangeBackground(sceneNom-1);
  
      
         float x; float y; // spawn coins on random positions
@@ -91,6 +91,14 @@ public class LevelManager : MonoBehaviour
                 else               
                 {
                     Coin newCoin = Instantiate(coin) as Coin; // spawn coin
+
+                    Spin spin = newCoin.GetComponentInChildren<Spin>();
+
+                    if (spin != null)
+                    {
+                        spin.speed = Random.Range(50, 300);
+                    }
+                    else Debug.Log("spin component not found");
 
                     newCoin.levelManager = this;
 
