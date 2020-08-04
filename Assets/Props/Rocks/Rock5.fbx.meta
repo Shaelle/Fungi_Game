@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 95cd32ce60c93ff4b8385fbd75fdc17b
+guid: 292446ae25a3af745bfcb4140ec05d94
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stalactite2
+    second: {fileID: 2100000, guid: 0e85b6f66e4b32e4685b1af99f9c9a94, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

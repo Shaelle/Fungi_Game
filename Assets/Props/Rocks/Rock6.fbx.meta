@@ -3,7 +3,12 @@ guid: f0b66fccb48dd05418073e964b4aa138
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LowRock4
+    second: {fileID: 2100000, guid: 6fcce068f1e4c534ea4fdb2892d7e7f2, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

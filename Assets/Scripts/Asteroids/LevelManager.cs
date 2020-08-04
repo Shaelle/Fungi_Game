@@ -115,6 +115,7 @@ public class LevelManager : MonoBehaviour
     }
 
 
+
     private int PlanetIndex(int nom)
     {
         int temp;
@@ -173,6 +174,13 @@ public class LevelManager : MonoBehaviour
             }
         }
         
+    }
+
+
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 

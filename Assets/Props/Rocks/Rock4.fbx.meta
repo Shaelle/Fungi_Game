@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 292446ae25a3af745bfcb4140ec05d94
+guid: eb856177fde8a394da5eb8bc7a6c8fa6
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PM3D_Cube3D1_4
+    second: {fileID: 2100000, guid: ee71281e38a824e4d9237e37db13dbc9, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
