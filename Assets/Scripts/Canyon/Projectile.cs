@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
 
     public Can_Manager levelManager;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,6 @@ public class Projectile : MonoBehaviour
             levelManager.HitTarget();
             obstacle.Kill();
         }
-        else Debug.Log("hit someting");
 
         Destroy(gameObject);
     }
