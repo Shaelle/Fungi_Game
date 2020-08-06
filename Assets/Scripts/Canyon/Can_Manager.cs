@@ -233,6 +233,7 @@ public class Can_Manager : MonoBehaviour
     private void GenerateObstacle(Vector3 spawn)
     {
 
+        const float rise = 3f;
 
         if (obstaclePrefabs.Length > 0)
         {
@@ -245,14 +246,24 @@ public class Can_Manager : MonoBehaviour
             if (Physics.Raycast(obstacle.transform.position, -Vector3.up, out hit))
             {
                 obstacle.transform.position = hit.point;
-                obstacle.transform.Translate(0, 2, 0);                
+                obstacle.transform.Translate(0, 2 + rise, 0);                
             }
 
-            if (obstacle.transform.position.y <= 2)
+            if (obstacle.transform.position.y <= 2 + rise)
             {
                 //Debug.Log("Obstacle too low: y = " + obstacle.transform.position.y + ". Removing it.");
                 obstacle.Kill();
             }
+
+
+            float x = obstacle.transform.position.x;
+
+            if (x < -7) { obstacle.transform.Rotate(0, 0, -60); }
+            else if (x < -4) { obstacle.transform.Rotate(0, 0, -30); }
+            else if (x > 4) { obstacle.transform.Rotate(0, 0, 30); }
+            else if (x > 7) { obstacle.transform.Rotate(0, 0, 60); }
+
+            
 
                                                              
         }
