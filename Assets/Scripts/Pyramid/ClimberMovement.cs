@@ -17,6 +17,8 @@ public class ClimberMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    public bool isMoving = true;
+
 
     private void Awake()
     {
@@ -33,22 +35,25 @@ public class ClimberMovement : MonoBehaviour
     void Update()
     {
 
-
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded) // gravitation
+        if (isMoving)
         {
-            if (velocity.y < 0)
+
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+            if (isGrounded) // gravitation
             {
-                velocity.y = -2f;
+                if (velocity.y < 0)
+                {
+                    velocity.y = -2f;
+                }
+
+                controller.Move(Vector3.forward * speed * Time.deltaTime);
             }
 
-            controller.Move(Vector3.forward * speed * Time.deltaTime);
+                velocity.y += gravity * Time.deltaTime;
+
+                controller.Move(velocity * Time.deltaTime);
         }
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
 
 
         
