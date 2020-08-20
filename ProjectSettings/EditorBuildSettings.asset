@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Canyon.unity
     guid: 98055795daac53e43873079e90a3fcde
+  - enabled: 1
+    path: Assets/Scenes/Pyramid.unity
+    guid: c4d7a06393cb4414daf06f340c25bf7d
   m_configObjects: {}

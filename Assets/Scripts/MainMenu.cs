@@ -17,6 +17,11 @@ public class MainMenu : MonoBehaviour
     }
 
 
+    public void LoadPyramid()
+    {
+        SceneManager.LoadScene("Pyramid");
+    }
+
     public void ExitGame()
     {
         Application.Quit();

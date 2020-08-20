@@ -12,6 +12,8 @@ public class Pyramid : MonoBehaviour
 
     [SerializeField] ClimberMovement player;
 
+    [SerializeField] BaseLevelManager levelManager;
+
 
     [SerializeField] float rowTurnX = 0.12f;
     [SerializeField] float rowTurnZ = 0.3f;
@@ -48,6 +50,7 @@ public class Pyramid : MonoBehaviour
     {
         controls = new PlayerInput();
         controls.Main.Click.performed += ctx => RaiseSteps();
+
     }
 
 
@@ -147,17 +150,23 @@ public class Pyramid : MonoBehaviour
     public void HitObstacle()
     {
         Debug.Log("Hit obstacle");
+
+        levelManager.Loose();
     }
 
 
     public void DeepFall()
     {
         Debug.Log("Deep fall");
+
+        levelManager.Loose();
     }
 
     public void Fall()
     {
         Debug.Log("Fall");
+
+        levelManager.Loose();
     }
 
 
@@ -191,6 +200,7 @@ public class Pyramid : MonoBehaviour
 
         player.isMoving = false;
 
+        levelManager.Win();
 
         Debug.Log("Win");
 
@@ -244,7 +254,6 @@ public class Pyramid : MonoBehaviour
                 StoneStep block;
 
                 
-
                 block = Instantiate(blocks[Random.Range(0, blocks.Length - 1)]) as StoneStep;
 
                 block.transform.position = pos;
