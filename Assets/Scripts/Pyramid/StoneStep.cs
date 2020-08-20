@@ -51,12 +51,6 @@ public class StoneStep : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
 
     // Update is called once per frame
     void Update()
@@ -74,10 +68,18 @@ public class StoneStep : MonoBehaviour
         }
     }
 
+
+    public void Lock()
+    {
+        isTriggered = true;
+    }
+
+
     public void Trigger()
     {
 
-        isTriggered = true; 
+        isTriggered = true;
+        pyramid.LockSteps(rowNumber);
 
         switch (position)
         {

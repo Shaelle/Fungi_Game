@@ -12,6 +12,9 @@ public class Pyramid : MonoBehaviour
 
     [SerializeField] ClimberMovement player;
 
+
+    Animator animator;
+
     [SerializeField] BaseLevelManager levelManager;
 
 
@@ -51,6 +54,8 @@ public class Pyramid : MonoBehaviour
         controls = new PlayerInput();
         controls.Main.Click.performed += ctx => RaiseSteps();
 
+        animator = player.GetComponent<Animator>();
+
     }
 
 
@@ -58,6 +63,7 @@ public class Pyramid : MonoBehaviour
     void Start()
     {
          GeneratePyramid();
+
 
         player.transform.position = new Vector3(top.x, player.transform.position.y, player.transform.position.z);
 
@@ -84,7 +90,6 @@ public class Pyramid : MonoBehaviour
                 }
             }
         }
-
 
         foreach (StoneStep block in FindObjectsOfType<StoneStep>())
         {
@@ -121,6 +126,20 @@ public class Pyramid : MonoBehaviour
     }
 
 
+    public void LockSteps(int rowNumber)
+    {
+
+        foreach (StoneStep block in holes)
+        {
+            if (block.rowNumber == rowNumber)
+            {
+                block.Lock();
+            }
+        }
+
+    }
+
+
     void RaiseSteps()
     {
 
@@ -149,7 +168,7 @@ public class Pyramid : MonoBehaviour
 
     public void HitObstacle()
     {
-        Debug.Log("Hit obstacle");
+        animator.SetTrigger("Hit");
 
         levelManager.Loose();
     }
@@ -157,14 +176,14 @@ public class Pyramid : MonoBehaviour
 
     public void DeepFall()
     {
-        Debug.Log("Deep fall");
+        animator.SetTrigger("Fall");
 
         levelManager.Loose();
     }
 
     public void Fall()
     {
-        Debug.Log("Fall");
+        animator.SetTrigger("Stopped");
 
         levelManager.Loose();
     }
@@ -199,6 +218,10 @@ public class Pyramid : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         player.isMoving = false;
+
+        animator.SetTrigger("Win");
+
+        yield return new WaitForSeconds(2f);
 
         levelManager.Win();
 
