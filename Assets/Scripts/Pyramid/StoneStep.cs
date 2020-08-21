@@ -55,11 +55,17 @@ public class StoneStep : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+
+    private void FixedUpdate()
+    {
         if (isRaising)
         {
             if (blocks.transform.position.y < newPos.y)
             {
-                blocks.transform.Translate(0,speed * Time.deltaTime,0);
+                blocks.transform.Translate(0, speed * Time.deltaTime, 0);
             }
             else
             {

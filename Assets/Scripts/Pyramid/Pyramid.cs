@@ -6,8 +6,13 @@ public class Pyramid : MonoBehaviour
 {
 
     [SerializeField] StoneStep[] blocks;
+    [SerializeField] GameObject[] decorativeBlocks;
+
     [SerializeField] int rowBlocks = 1;
     [SerializeField] int rows = 1;
+
+    [SerializeField] int allSizeBlockLimit = 5; // needed for prevent visual artifacts nearby summit. TODO: find a better name.
+    [SerializeField] int interactiveBlocksRadius = 10;
 
 
     [SerializeField] ClimberMovement player;
@@ -43,7 +48,7 @@ public class Pyramid : MonoBehaviour
 
     int currObstacles = 0;
 
-    const float holeRaduis = 1f;
+    const float holeRaduis = 1.5f;
 
     bool isPassingObstacle = false;
     bool isWinning = false;
@@ -70,6 +75,7 @@ public class Pyramid : MonoBehaviour
 
         rowsWithHoles = new List<int>();
         deeperHoles = new List<int>();
+
 
         holes = new List<StoneStep>();
 
@@ -225,8 +231,6 @@ public class Pyramid : MonoBehaviour
 
         levelManager.Win();
 
-        Debug.Log("Win");
-
     }
 
 
@@ -244,18 +248,30 @@ public class Pyramid : MonoBehaviour
         for (int i = 0; i < rows; i++) // frontal rows
         {    
             
-            Vector3 temp =  GenerateRow(rowPos, currNumber, i, false);
+            Vector3 temp =  GenerateRow(rowPos, currNumber, i, 1);
+
 
             temp.x += rend.bounds.size.x - rowTurnX;
             temp.z += rend.bounds.size.z - rowTurnZ;
 
-            GenerateRow(temp, currNumber, i, true);
+            temp = GenerateRow(temp, currNumber, i, 2);
 
-            rowPos.z += rend.bounds.size.z/2 - RowPozZ;
+            temp.x -= rend.bounds.size.x - rowTurnX;
+            temp.z += rend.bounds.size.z - rowTurnZ;
+
+            temp = GenerateRow(temp, currNumber, i, 3);
+
+            temp.x -= rend.bounds.size.x - rowTurnX;
+            temp.z -= rend.bounds.size.z - rowTurnZ;
+
+            GenerateRow(temp, currNumber, i, 4);
+
+
+            rowPos.z += rend.bounds.size.z / 2 - RowPozZ;
             rowPos.y += rend.bounds.size.y - RowPosY;
 
             rowPos.x += rend.bounds.size.x + RowPosX;// / 2;
-
+            
             currNumber--;
         }
 
@@ -264,57 +280,106 @@ public class Pyramid : MonoBehaviour
 
 
 
-    private Vector3 GenerateRow(Vector3 startPos, int blockNumber, int rowNumber, bool rotate)
+    private Vector3 GenerateRow(Vector3 startPos, int blockNumber, int rowNumber, int rotation)
     {
 
         Vector3 finalPoint = startPos;
+      
+        Vector3 pos = startPos;
 
-        if (blocks.Length > 0)
+
+
+        int minInteractive = Mathf.RoundToInt(blockNumber / 2) - interactiveBlocksRadius;
+
+        int maxInteractive = Mathf.RoundToInt(blockNumber / 2) + interactiveBlocksRadius;
+
+        void PlaceBlock(GameObject block, Renderer rend)
         {
-            Vector3 pos = startPos;
-            for (int i = 0; i < blockNumber; i++)
+
+            block.transform.position = pos;
+
+            switch (rotation)
+            {
+                case 1:
+
+                    block.transform.Rotate(0, 90, 0);
+                    pos.x += rend.bounds.size.x;
+                    break;
+
+                case 2:
+
+                    block.transform.Rotate(0, 0, 0);
+                    pos.z += rend.bounds.size.z;
+                    break;
+
+                case 3:
+
+                    block.transform.Rotate(0, 270, 0);
+                    pos.x -= rend.bounds.size.x;
+                    break;
+
+                case 4:
+
+                    block.transform.Rotate(0, 180, 0);
+                    pos.z -= rend.bounds.size.z;
+                    break;
+
+                default:
+                    break;
+            }
+
+            finalPoint = block.transform.position;
+
+            top = block.transform.position;
+        }
+
+
+        for (int i = 0; i < blockNumber; i++)
+        {
+            bool canInteract = (i >= minInteractive) && (i <= maxInteractive);
+
+            if ((canInteract && rotation == 1) || blockNumber <= allSizeBlockLimit)
             {
                 StoneStep block;
 
-                
-                block = Instantiate(blocks[Random.Range(0, blocks.Length - 1)]) as StoneStep;
-
-                block.transform.position = pos;
-
-                block.pyramid = this;
-
-                block.rowNumber = rowNumber + 1;
-
-                Renderer rend = block.transform.GetChild(0).gameObject.GetComponent<Renderer>();
-
-                if (!rotate)
+                if (blocks.Length > 0)
                 {
-                    block.transform.Rotate(0, 90, 0);
+                    block = Instantiate(blocks[Random.Range(0, blocks.Length - 1)]) as StoneStep;
 
-                    pos.x += rend.bounds.size.x;
+                    block.pyramid = this;
+
+                    block.rowNumber = rowNumber + 1;
+
+
+                    PlaceBlock(block.gameObject, block.transform.GetChild(0).gameObject.GetComponent<Renderer>());
+
+                    if (blockNumber == 1)
+                    {
+                        block.WinBlock();
+                    }
                 }
-                else
+            }
+            else
+            {
+                GameObject block;
+
+                if (decorativeBlocks.Length > 0)
                 {
-                    pos.z += rend.bounds.size.z;
+                    block = Instantiate(decorativeBlocks[Random.Range(0, blocks.Length - 1)]) as GameObject;
+
+                    PlaceBlock(block, block.GetComponent<Renderer>());
+
                 }
-
-                finalPoint = block.transform.position;
-
-                top = block.transform.position;
-
-                if (blockNumber == 1)
-                {
-                    block.WinBlock();
-                }
-
-
 
             }
 
+
         }
+
 
         return finalPoint;
     }
+
 
 
     private void OnEnable()
