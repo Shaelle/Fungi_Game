@@ -70,7 +70,7 @@ public class Pyramid : MonoBehaviour
          GeneratePyramid();
 
 
-        player.transform.position = new Vector3(top.x, player.transform.position.y, player.transform.position.z);
+        player.transform.position = new Vector3(top.x, player.transform.position.y, player.transform.position.z); // TODO: bug — sometimes do nothing.
 
 
         rowsWithHoles = new List<int>();
@@ -121,6 +121,7 @@ public class Pyramid : MonoBehaviour
                 }
             }
         }
+
 
 
     }
