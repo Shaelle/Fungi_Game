@@ -59,7 +59,7 @@ public class Pyramid : MonoBehaviour
         controls = new PlayerInput();
         controls.Main.Click.performed += ctx => RaiseSteps();
 
-        animator = player.GetComponent<Animator>();
+        animator = player.transform.GetChild(0).GetComponent<Animator>();
 
     }
 
