@@ -6,20 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public void LoadAsteroids()
+    public void LoadLevel(string levelName)
     {
-        SceneManager.LoadScene("Space1");
-    }
-
-    public void LoadCanyon()
-    {
-        SceneManager.LoadScene("Canyon");
-    }
-
-
-    public void LoadPyramid()
-    {
-        SceneManager.LoadScene("Pyramid");
+        SceneManager.LoadScene(levelName);
     }
 
     public void ExitGame()

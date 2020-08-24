@@ -1142,7 +1142,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 47e2644489c7d9449a0fc6acdf7f3d02, type: 3}
   - {fileID: 21300000, guid: 3281ebca4f3e5d04d9de11d133af13d1, type: 3}
   - {fileID: 21300000, guid: 1f1657ec4eabff145888d08e2f74c140, type: 3}
-  nextScene: Space1
+  nextScene: Asteroids
   background: {fileID: 1462987657}
   transition: {fileID: 2089983944}
   transitionTime: 1
