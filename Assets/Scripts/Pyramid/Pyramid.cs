@@ -53,6 +53,8 @@ public class Pyramid : MonoBehaviour
     bool isPassingObstacle = false;
     bool isWinning = false;
 
+    const float stopDelay = 0.2f;
+
 
     private void Awake()
     {
@@ -175,24 +177,18 @@ public class Pyramid : MonoBehaviour
 
     public void HitObstacle()
     {
-        animator.SetTrigger("Hit");
-
-        levelManager.Loose();
+        StartCoroutine(Loosing("Hit"));
     }
 
 
     public void DeepFall()
     {
-        animator.SetTrigger("Fall");
-
-        levelManager.Loose();
+        StartCoroutine(Loosing("Fall"));
     }
 
     public void Fall()
     {
-        animator.SetTrigger("Stopped");
-
-        levelManager.Loose();
+        StartCoroutine(Loosing("Stopped"));
     }
 
 
@@ -222,7 +218,7 @@ public class Pyramid : MonoBehaviour
 
     IEnumerator Winning()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(stopDelay);
 
         player.isMoving = false;
 
@@ -231,6 +227,20 @@ public class Pyramid : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         levelManager.Win();
+
+    }
+
+
+    IEnumerator Loosing(string trigger)
+    {
+
+        animator.SetTrigger(trigger);
+
+        yield return new WaitForSeconds(stopDelay);
+
+        player.isMoving = false;
+
+        levelManager.Loose();
 
     }
 
