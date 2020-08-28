@@ -19,11 +19,6 @@ public class Can_controls : MonoBehaviour
 
 
     private Projectile megaProjectile;
-
-    InfiniteFly fly;
-
-    float speedBoost = 0;
-
    
     bool canFire = true;
   
@@ -36,8 +31,6 @@ public class Can_controls : MonoBehaviour
         controls = new PlayerInput();
         controls.Main.Click.performed += ctx => Fire();
         controls.Main.PointerPosition.performed += ctx => UpdateCursorPos(ctx.ReadValue<Vector2>());
-
-        fly = GetComponent<InfiniteFly>();
     }
 
 
@@ -46,30 +39,10 @@ public class Can_controls : MonoBehaviour
     {
 
         gun = transform.GetChild(1).gameObject;
-
-        speedBoost = fly.speed * 5;
-
-        StartCoroutine(BoostSpeed());
         
     }
 
 
-
-    IEnumerator BoostSpeed()
-    {
-        float normalSpeed = fly.speed;
-
-        while (speedBoost > normalSpeed)
-        {
-            fly.speed = speedBoost;
-
-            yield return new WaitForSeconds(0.3f);
-
-            speedBoost--;
-        }
-
-        fly.speed = normalSpeed;
-    }
 
 
     private void LateUpdate()
@@ -97,6 +70,10 @@ public class Can_controls : MonoBehaviour
                     megaProjectile.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
                     megaProjectile.transform.rotation = transform.rotation;
 
+
+                    megaProjectile.speed = 200f;
+
+
                     Vector3 megaAim = new Vector3(Screen.width / 2, Screen.height, 100);
                     megaAim = Camera.main.ScreenToWorldPoint(megaAim);
 
@@ -116,6 +93,7 @@ public class Can_controls : MonoBehaviour
                 projectile.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
                 projectile.transform.rotation = transform.rotation;
                 projectile.transform.LookAt(aim);
+
 
                 projectile.levelManager = levelManager;
 

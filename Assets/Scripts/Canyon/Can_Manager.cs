@@ -32,6 +32,8 @@ public class Can_Manager : MonoBehaviour
 
     [SerializeField] float transitionTime = 1f;
 
+     FlySpeed speedManager;
+
     string sceneName;
 
 
@@ -55,6 +57,11 @@ public class Can_Manager : MonoBehaviour
 
     bool obstacleCreated;
 
+
+    private void Awake()
+    {
+        speedManager = GetComponent<FlySpeed>();
+    }
 
 
     // Start is called before the first frame update
@@ -112,6 +119,7 @@ public class Can_Manager : MonoBehaviour
 
     public void Win()
     {
+        speedManager.ResetSpeed();
         StartCoroutine(Winning());
     }
 
